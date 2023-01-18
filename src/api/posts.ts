@@ -24,3 +24,22 @@ export const getPost = async (id: number) => {
   );
   return response.data;
 };
+
+export const createPost = async ({
+  title,
+  body,
+}: {
+  title: string;
+  body: string;
+}) => {
+  const response = await axios.post<any, AxiosResponse<IPost>>(
+    `${BASE_URL}/posts`,
+    {
+      title,
+      body,
+      userId: 1,
+      id: Date.now(),
+    }
+  );
+  return response.data;
+};
