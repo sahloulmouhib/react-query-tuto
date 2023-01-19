@@ -27,14 +27,10 @@ export function PostListPaginated() {
         <div key={post.id}>{post.title}</div>
       ))}
       {data.previousPage && (
-        <button onClick={() => data.previousPage && setPage(data.previousPage)}>
-          Previous
-        </button>
+        <button onClick={() => setPage(data.previousPage!)}>Previous</button>
       )}
       {data.nextPage && (
-        <button onClick={() => data.previousPage && setPage(data.nextPage!)}>
-          Next
-        </button>
+        <button onClick={() => setPage(data.nextPage!)}>Next</button>
       )}
     </>
   );

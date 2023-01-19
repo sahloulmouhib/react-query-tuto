@@ -11,6 +11,12 @@ interface IPost {
   body: string;
 }
 
+export interface IPostPaginated {
+  nextPage?: number;
+  previousPage?: number;
+  posts: IPost[];
+}
+
 export const getPosts = async () => {
   const response = await axios.get<any, AxiosResponse<IPost[]>>(
     `${BASE_URL}/posts`
@@ -44,7 +50,9 @@ export const createPost = async ({
   return response.data;
 };
 
-export const getPostsPaginated = async (page: number) => {
+export const getPostsPaginated = async (
+  page: number
+): Promise<IPostPaginated> => {
   return axios
     .get(`${BASE_URL}/posts`, {
       params: { _page: page, _sort: "title", _limit: 2 },

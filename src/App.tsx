@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CreatePost } from "./CreatePost";
 import Post from "./Post";
+import { PostListInfinite } from "./PostListInfinite";
 import { PostListPaginated } from "./PostListPaginated";
 
 import PostsList1 from "./PostsList1";
@@ -29,6 +30,9 @@ export default function App() {
       </button>
       <button onClick={() => setCurrentPage(<PostListPaginated />)}>
         Post List Paginated
+      </button>
+      <button onClick={() => setCurrentPage(<PostListInfinite />)}>
+        Post List Infinite
       </button>
       {currentPage}
     </div>
