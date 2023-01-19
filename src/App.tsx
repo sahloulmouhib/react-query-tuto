@@ -1,4 +1,6 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { getPost } from "./api/posts";
 import { CreatePost } from "./CreatePost";
 import Post from "./Post";
 import { PostListInfinite } from "./PostListInfinite";
@@ -9,6 +11,15 @@ import PostsList2 from "./PostsList2";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(<PostsList1 />);
+  const queryClient = useQueryClient();
+
+  //prefetch the first post when the user hovers over the link
+  function onHoverPostOneLink() {
+    queryClient.prefetchQuery({
+      queryKey: ["post", 1],
+      queryFn: () => getPost(1),
+    });
+  }
 
   return (
     <div>
@@ -22,6 +33,7 @@ export default function App() {
         First Post
       </button>
       <button
+        onMouseOver={onHoverPostOneLink}
         onClick={() =>
           setCurrentPage(<CreatePost setCurrentPage={setCurrentPage} />)
         }

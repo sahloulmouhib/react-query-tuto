@@ -6,7 +6,18 @@ function PostsList1() {
   const postQuery = useQuery({
     queryKey: ["posts"],
     queryFn: getPosts,
-    // refetchInterval: 1000,
+    //initialData is not used when staleTime is set and is considered as real data
+    //if you want to have placeholder data, you can use placeholderData
+    // staleTime: 1000 * 5 * 60,
+    // initialData: [
+    //   {
+    //     userId: 1,
+    //     id: 1,
+    //     title: "initial data",
+    //     body: "empty",
+    //   },
+    // ],
+    placeholderData: [],
   });
 
   if (postQuery.isLoading) return <h1>Loading...</h1>;
